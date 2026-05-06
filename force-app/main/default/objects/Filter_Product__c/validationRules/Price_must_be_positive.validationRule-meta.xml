@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_must_be_positive</fullName>
+    <active>true</active>
+    <description>Unit price must be greater than zero.</description>
+    <errorConditionFormula>Unit_Price__c &lt;= 0</errorConditionFormula>
+    <errorMessage>Unit price must be greater than zero.</errorMessage>
+</ValidationRule>
