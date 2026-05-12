@@ -1,0 +1,167 @@
+import { LightningElement } from 'lwc';
+import findMatchingProduct from '@salesforce/apex/AirFilterAIConsoleController.findMatchingProduct';
+import createInquiry from '@salesforce/apex/AirFilterAIConsoleController.createInquiry';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
+export default class AirFilterSalesConsole extends LightningElement {
+    width;
+    height;
+    depth;
+    mervRating = '8';
+    quantity = 1;
+
+    firstName;
+    lastName;
+    company;
+    email;
+    phone;
+
+    matchResult;
+    createdInquiry;
+    isLoading = false;
+
+    get mervOptions() {
+        return [
+            { label: '8', value: '8' },
+            { label: '11', value: '11' },
+            { label: '13', value: '13' },
+            { label: '16', value: '16' }
+        ];
+    }
+
+    get matchStatusLabel() {
+        if (!this.matchResult) {
+            return '';
+        }
+
+        return this.matchResult.found ? 'Matched' : 'Custom Required';
+    }
+
+    handleInputChange(event) {
+        const fieldName = event.target.name;
+        this[fieldName] = event.target.value;
+    }
+
+    async handleFindProduct() {
+        if (!this.validateFilterFields()) {
+            return;
+        }
+
+        this.isLoading = true;
+        this.matchResult = null;
+        this.createdInquiry = null;
+
+        try {
+            this.matchResult = await findMatchingProduct({
+                width: Number(this.width),
+                height: Number(this.height),
+                depth: Number(this.depth),
+                mervRating: this.mervRating
+            });
+
+            this.showToast(
+                this.matchResult.found ? 'Product found' : 'No exact match',
+                this.matchResult.message,
+                this.matchResult.found ? 'success' : 'warning'
+            );
+        } catch (error) {
+            this.showToast('Error finding product', this.getErrorMessage(error), 'error');
+        } finally {
+            this.isLoading = false;
+        }
+    }
+
+    async handleCreateInquiry() {
+        if (!this.validateInquiryFields()) {
+            return;
+        }
+
+        this.isLoading = true;
+        this.createdInquiry = null;
+
+        const request = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            company: this.company,
+            email: this.email,
+            phone: this.phone,
+            width: Number(this.width),
+            height: Number(this.height),
+            depth: Number(this.depth),
+            mervRating: this.mervRating,
+            quantity: Number(this.quantity),
+            source: 'Manual'
+        };
+
+        try {
+            this.createdInquiry = await createInquiry({ request });
+
+            this.showToast(
+                'Inquiry created',
+                `${this.createdInquiry.inquiryName} was created successfully.`,
+                'success'
+            );
+        } catch (error) {
+            this.showToast('Error creating inquiry', this.getErrorMessage(error), 'error');
+        } finally {
+            this.isLoading = false;
+        }
+    }
+
+    validateFilterFields() {
+        if (!this.width || !this.height || !this.depth || !this.mervRating) {
+            this.showToast(
+                'Missing filter details',
+                'Please enter width, height, depth, and MERV rating.',
+                'warning'
+            );
+            return false;
+        }
+
+        return true;
+    }
+
+    validateInquiryFields() {
+        if (!this.validateFilterFields()) {
+            return false;
+        }
+
+        if (!this.quantity || Number(this.quantity) <= 0) {
+            this.showToast('Invalid quantity', 'Quantity must be greater than zero.', 'warning');
+            return false;
+        }
+
+        if (!this.firstName || !this.lastName || (!this.email && !this.phone)) {
+    this.showToast(
+        'Missing customer details',
+        'Please enter first name, last name, and either email or phone.',
+        'warning'
+    );
+    return false;
+}
+
+        return true;
+    }
+
+    getErrorMessage(error) {
+        if (error && error.body && error.body.message) {
+            return error.body.message;
+        }
+
+        if (error && error.message) {
+            return error.message;
+        }
+
+        return 'Unexpected error occurred.';
+    }
+
+    showToast(title, message, variant) {
+        this.dispatchEvent(
+            new ShowToastEvent({
+                title,
+                message,
+                variant
+            })
+        );
+    }
+}

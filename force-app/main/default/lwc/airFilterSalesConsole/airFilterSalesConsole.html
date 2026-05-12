@@ -1,0 +1,165 @@
+<template>
+    <lightning-card title="AirFilterAI Sales Rep Console" icon-name="standard:product">
+        <div class="slds-p-around_medium">
+
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" class="slds-m-bottom_medium">
+                    <h2 class="slds-text-heading_small">Filter Request</h2>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3" padding="around-small">
+                    <lightning-input
+                        type="number"
+                        label="Width"
+                        name="width"
+                        value={width}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3" padding="around-small">
+                    <lightning-input
+                        type="number"
+                        label="Height"
+                        name="height"
+                        value={height}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3" padding="around-small">
+                    <lightning-input
+                        type="number"
+                        label="Depth"
+                        name="depth"
+                        value={depth}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3" padding="around-small">
+                    <lightning-combobox
+                        label="MERV Rating"
+                        name="mervRating"
+                        value={mervRating}
+                        options={mervOptions}
+                        onchange={handleInputChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="3" padding="around-small">
+                    <lightning-input
+                        type="number"
+                        label="Quantity"
+                        name="quantity"
+                        value={quantity}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12" class="slds-m-top_small slds-m-bottom_large">
+                    <lightning-button
+                        variant="brand"
+                        label="Find Matching Product"
+                        onclick={handleFindProduct}
+                        disabled={isLoading}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <template if:true={matchResult}>
+                <div class="slds-box slds-theme_default slds-m-bottom_large">
+                    <h2 class="slds-text-heading_small slds-m-bottom_small">Product Match Result</h2>
+
+                    <p><strong>Status:</strong> {matchStatusLabel}</p>
+                    <p><strong>Message:</strong> {matchResult.message}</p>
+
+                    <template if:true={matchResult.found}>
+                        <p><strong>Product:</strong> {matchResult.productName}</p>
+                        <p><strong>Product Type:</strong> {matchResult.productType}</p>
+                        <p><strong>Unit Price:</strong> {matchResult.unitPrice}</p>
+                        <p><strong>Lead Time:</strong> {matchResult.leadTimeDays} days</p>
+                    </template>
+                </div>
+            </template>
+
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" class="slds-m-bottom_medium">
+                    <h2 class="slds-text-heading_small">Customer Information</h2>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input
+                        label="First Name"
+                        name="firstName"
+                        value={firstName}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input
+                        label="Last Name"
+                        name="lastName"
+                        value={lastName}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input
+                        label="Company"
+                        name="company"
+                        value={company}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input
+                        type="email"
+                        label="Email"
+                        name="email"
+                        value={email}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-input
+                        type="tel"
+                        label="Phone"
+                        name="phone"
+                        value={phone}
+                        onchange={handleInputChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12" class="slds-m-top_small">
+                    <lightning-button
+                        variant="success"
+                        label="Create Inquiry"
+                        onclick={handleCreateInquiry}
+                        disabled={isLoading}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+
+            <template if:true={createdInquiry}>
+                <div class="slds-box slds-theme_success slds-m-top_large">
+                    <h2 class="slds-text-heading_small slds-m-bottom_small">Inquiry Created</h2>
+                    <p><strong>Inquiry:</strong> {createdInquiry.inquiryName}</p>
+                    <p><strong>Status:</strong> {createdInquiry.status}</p>
+                    <p><strong>Estimated Unit Price:</strong> {createdInquiry.estimatedUnitPrice}</p>
+                    <p><strong>Estimated Total Price:</strong> {createdInquiry.estimatedTotalPrice}</p>
+                    <p>{createdInquiry.message}</p>
+                </div>
+            </template>
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Processing..." size="medium"></lightning-spinner>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
