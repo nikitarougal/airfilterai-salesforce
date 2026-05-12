@@ -98,8 +98,6 @@ public with sharing class AirFilterAIConsoleController {
 
         insert inquiry;
 
-        InquiryProcessingService.processInquiry(inquiry.Id);
-
         Customer_Inquiry__c updatedInquiry = [
             SELECT Id,
                    Name,
