@@ -86,16 +86,16 @@ flowchart LR
 
 ### Screenshots
 **Sales Rep Console — Product Match**
-![Sales Rep Console — Product Match](\docs\screenshots\02-sales-rep-console-product-match.png)
+![Sales Rep Console — Product Match](docs\screenshots\02-sales-rep-console-product-match.png)
 
 **Customer Inquiry Record**
-![Customer Inquiry Record](\docs\screenshots\03-sales-rep-console-inquiry-created.png)
+![Customer Inquiry Record](docs\screenshots\03-sales-rep-console-inquiry-created.png)
 
 **Data Model**
-![Data Model](\docs\screenshots\07-schema-builder-data-model.png)
+![Data Model](docs\screenshots\07-schema-builder-data-model.png)
 
 **Flow Automation**
-![Flow Automation](\docs\screenshots\06-flow-process-customer-inquiry.png)
+![Flow Automation](docs\screenshots\06-flow-process-customer-inquiry.png)
 
 ### Development Setup
 
