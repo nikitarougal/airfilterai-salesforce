@@ -166,3 +166,13 @@ Pricing rules are stored as Salesforce records instead of hardcoded values. This
 - Git-based development
 - CRM architecture
 - Business process automation
+
+## Lead Qualification Workflow
+
+The MVP was extended with a sales operations workflow that automatically qualifies customer inquiries after product matching and pricing.
+
+The qualification logic assigns a lead score based on quantity, company information, target use case, urgency, matched product availability, and contact completeness.
+
+Based on the score, the system assigns a lead priority, recommends the next sales action, and flags whether follow-up is required.
+
+This feature demonstrates how Salesforce can support sales operations teams by reducing manual triage and standardizing follow-up behavior.
