@@ -86,16 +86,16 @@ flowchart LR
 
 ### Screenshots
 **Sales Rep Console — Product Match**
-![Sales Rep Console — Product Match](.\docs\screenshots\02-sales-rep-console-product-match.png)
+![Sales Rep Console — Product Match](\docs\screenshots\02-sales-rep-console-product-match.png)
 
 **Customer Inquiry Record**
-![Customer Inquiry Record](.\docs\screenshots\03-sales-rep-console-inquiry-created.png)
+![Customer Inquiry Record](\docs\screenshots\03-sales-rep-console-inquiry-created.png)
 
 **Data Model**
-![Data Model](.\docs\screenshots\07-schema-builder-data-model.png)
+![Data Model](\docs\screenshots\07-schema-builder-data-model.png)
 
 **Flow Automation**
-![Flow Automation](.\docs\screenshots\06-flow-process-customer-inquiry.png)
+![Flow Automation](\docs\screenshots\06-flow-process-customer-inquiry.png)
 
 ### Development Setup
 
@@ -166,13 +166,3 @@ Pricing rules are stored as Salesforce records instead of hardcoded values. This
 - Git-based development
 - CRM architecture
 - Business process automation
-
-## Lead Qualification Workflow
-
-The MVP was extended with a sales operations workflow that automatically qualifies customer inquiries after product matching and pricing.
-
-The qualification logic assigns a lead score based on quantity, company information, target use case, urgency, matched product availability, and contact completeness.
-
-Based on the score, the system assigns a lead priority, recommends the next sales action, and flags whether follow-up is required.
-
-This feature demonstrates how Salesforce can support sales operations teams by reducing manual triage and standardizing follow-up behavior.
