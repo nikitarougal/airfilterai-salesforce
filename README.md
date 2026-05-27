@@ -85,17 +85,18 @@ flowchart LR
 - `Process_Customer_Inquiry_On_Create`
 
 ### Screenshots
-**Sales Rep Console — Product Match**
-![Sales Rep Console — Product Match](docs\screenshots\02-sales-rep-console-product-match.png)
 
-**Customer Inquiry Record**
-![Customer Inquiry Record](docs\screenshots\03-sales-rep-console-inquiry-created.png)
+**Sales Rep Console — Product Match**  
+![Sales Rep Console — Product Match](docs/screenshots/02-sales-rep-console-product-match.png)
 
-**Data Model**
-![Data Model](docs\screenshots\07-schema-builder-data-model.png)
+**Customer Inquiry Record**  
+![Customer Inquiry Record](docs/screenshots/03-sales-rep-console-inquiry-created.png)
 
-**Flow Automation**
-![Flow Automation](docs\screenshots\06-flow-process-customer-inquiry.png)
+**Data Model**  
+![Data Model](docs/screenshots/07-schema-builder-data-model.png)
+
+**Flow Automation**  
+![Flow Automation](docs/screenshots/06-flow-process-customer-inquiry.png)
 
 ### Development Setup
 
