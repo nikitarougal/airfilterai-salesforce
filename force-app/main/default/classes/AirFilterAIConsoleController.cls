@@ -22,6 +22,8 @@ public with sharing class AirFilterAIConsoleController {
         @AuraEnabled public String mervRating { get; set; }
         @AuraEnabled public Integer quantity { get; set; }
         @AuraEnabled public String source { get; set; }
+        @AuraEnabled public String targetUseCase { get; set; }
+        @AuraEnabled public String requestedTimeline { get; set; }
     }
 
     public class InquiryResponse {
@@ -93,10 +95,23 @@ public with sharing class AirFilterAIConsoleController {
             Requested_MERV_Rating__c = request.mervRating,
             Quantity__c = request.quantity,
             Source__c = String.isBlank(request.source) ? 'Manual' : request.source,
+            Target_Use_Case__c = String.isBlank(request.targetUseCase) ? 'Unknown' : request.targetUseCase,
+            Requested_Timeline__c = String.isBlank(request.requestedTimeline) ? 'Unknown' : request.requestedTimeline,
             Status__c = 'New'
         );
 
         insert inquiry;
+
+        Customer_Inquiry__c processedCheck = [
+            SELECT Id, Status__c
+            FROM Customer_Inquiry__c
+            WHERE Id = :inquiry.Id
+            LIMIT 1
+        ];
+
+        if (processedCheck.Status__c == 'New') {
+            InquiryProcessingService.processInquiry(inquiry.Id);
+        }
 
         Customer_Inquiry__c updatedInquiry = [
             SELECT Id,

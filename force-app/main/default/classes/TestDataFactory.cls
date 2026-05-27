@@ -52,7 +52,9 @@ public class TestDataFactory {
         Requested_MERV_Rating__c = '8',
         Quantity__c = 10,
         Source__c = 'Manual',
-        Status__c = 'New'
+        Status__c = 'New',
+        Target_Use_Case__c = 'Commercial',
+        Requested_Timeline__c = 'ASAP'
     );
 
     if (doInsert) {

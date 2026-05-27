@@ -20,6 +20,9 @@ export default class AirFilterSalesConsole extends LightningElement {
     createdInquiry;
     isLoading = false;
 
+    targetUseCase = 'Unknown';
+    requestedTimeline = 'Unknown';
+
     get mervOptions() {
         return [
             { label: '8', value: '8' },
@@ -35,6 +38,26 @@ export default class AirFilterSalesConsole extends LightningElement {
         }
 
         return this.matchResult.found ? 'Matched' : 'Custom Required';
+    }
+
+    get targetUseCaseOptions() {
+        return [
+            { label: 'Residential', value: 'Residential' },
+            { label: 'Commercial', value: 'Commercial' },
+            { label: 'Industrial', value: 'Industrial' },
+            { label: 'HVAC Contractor', value: 'HVAC Contractor' },
+            { label: 'Unknown', value: 'Unknown' }
+        ];
+    }
+
+    get requestedTimelineOptions() {
+        return [
+            { label: 'ASAP', value: 'ASAP' },
+            { label: 'This Week', value: 'This Week' },
+            { label: 'This Month', value: 'This Month' },
+            { label: 'Flexible', value: 'Flexible' },
+            { label: 'Unknown', value: 'Unknown' }
+        ];
     }
 
     handleInputChange(event) {
@@ -90,7 +113,9 @@ export default class AirFilterSalesConsole extends LightningElement {
             depth: Number(this.depth),
             mervRating: this.mervRating,
             quantity: Number(this.quantity),
-            source: 'Manual'
+            source: 'Manual',
+            targetUseCase: this.targetUseCase,
+            requestedTimeline: this.requestedTimeline
         };
 
         try {

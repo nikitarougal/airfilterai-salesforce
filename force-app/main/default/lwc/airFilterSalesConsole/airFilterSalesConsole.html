@@ -8,60 +8,37 @@
                 </lightning-layout-item>
 
                 <lightning-layout-item size="3" padding="around-small">
-                    <lightning-input
-                        type="number"
-                        label="Width"
-                        name="width"
-                        value={width}
+                    <lightning-input type="number" label="Width" name="width" value={width}
                         onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="3" padding="around-small">
-                    <lightning-input
-                        type="number"
-                        label="Height"
-                        name="height"
-                        value={height}
+                    <lightning-input type="number" label="Height" name="height" value={height}
                         onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="3" padding="around-small">
-                    <lightning-input
-                        type="number"
-                        label="Depth"
-                        name="depth"
-                        value={depth}
+                    <lightning-input type="number" label="Depth" name="depth" value={depth}
                         onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="3" padding="around-small">
-                    <lightning-combobox
-                        label="MERV Rating"
-                        name="mervRating"
-                        value={mervRating}
-                        options={mervOptions}
+                    <lightning-combobox label="MERV Rating" name="mervRating" value={mervRating} options={mervOptions}
                         onchange={handleInputChange}>
                     </lightning-combobox>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="3" padding="around-small">
-                    <lightning-input
-                        type="number"
-                        label="Quantity"
-                        name="quantity"
-                        value={quantity}
+                    <lightning-input type="number" label="Quantity" name="quantity" value={quantity}
                         onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="12" class="slds-m-top_small slds-m-bottom_large">
-                    <lightning-button
-                        variant="brand"
-                        label="Find Matching Product"
-                        onclick={handleFindProduct}
+                    <lightning-button variant="brand" label="Find Matching Product" onclick={handleFindProduct}
                         disabled={isLoading}>
                     </lightning-button>
                 </lightning-layout-item>
@@ -89,57 +66,48 @@
                 </lightning-layout-item>
 
                 <lightning-layout-item size="6" padding="around-small">
-                    <lightning-input
-                        label="First Name"
-                        name="firstName"
-                        value={firstName}
-                        onchange={handleInputChange}>
+                    <lightning-input label="First Name" name="firstName" value={firstName} onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="6" padding="around-small">
-                    <lightning-input
-                        label="Last Name"
-                        name="lastName"
-                        value={lastName}
-                        onchange={handleInputChange}>
+                    <lightning-input label="Last Name" name="lastName" value={lastName} onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="6" padding="around-small">
-                    <lightning-input
-                        label="Company"
-                        name="company"
-                        value={company}
-                        onchange={handleInputChange}>
+                    <lightning-input label="Company" name="company" value={company} onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="6" padding="around-small">
-                    <lightning-input
-                        type="email"
-                        label="Email"
-                        name="email"
-                        value={email}
-                        onchange={handleInputChange}>
+                    <lightning-input type="email" label="Email" name="email" value={email} onchange={handleInputChange}>
                     </lightning-input>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="6" padding="around-small">
-                    <lightning-input
-                        type="tel"
-                        label="Phone"
-                        name="phone"
-                        value={phone}
-                        onchange={handleInputChange}>
+                    <lightning-input type="tel" label="Phone" name="phone" value={phone} onchange={handleInputChange}>
                     </lightning-input>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="12" class="slds-m-top_medium slds-m-bottom_medium">
+                    <h2 class="slds-text-heading_small">Qualification Details</h2>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-combobox label="Target Use Case" name="targetUseCase" value={targetUseCase}
+                        options={targetUseCaseOptions} onchange={handleInputChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+
+                <lightning-layout-item size="6" padding="around-small">
+                    <lightning-combobox label="Requested Timeline" name="requestedTimeline" value={requestedTimeline}
+                        options={requestedTimelineOptions} onchange={handleInputChange}>
+                    </lightning-combobox>
                 </lightning-layout-item>
 
                 <lightning-layout-item size="12" class="slds-m-top_small">
-                    <lightning-button
-                        variant="success"
-                        label="Create Inquiry"
-                        onclick={handleCreateInquiry}
+                    <lightning-button variant="success" label="Create Inquiry" onclick={handleCreateInquiry}
                         disabled={isLoading}>
                     </lightning-button>
                 </lightning-layout-item>

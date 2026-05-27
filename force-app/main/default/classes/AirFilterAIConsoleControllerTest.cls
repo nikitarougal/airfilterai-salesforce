@@ -47,6 +47,8 @@ public class AirFilterAIConsoleControllerTest {
         request.mervRating = '8';
         request.quantity = 10;
         request.source = 'Manual';
+        request.targetUseCase = 'Commercial';
+        request.requestedTimeline = 'ASAP';
 
         Test.startTest();
         AirFilterAIConsoleController.InquiryResponse response =
@@ -60,7 +62,14 @@ public class AirFilterAIConsoleControllerTest {
         System.assert(response.estimatedTotalPrice > 0);
 
         Customer_Inquiry__c createdInquiry = [
-            SELECT Id, First_Name__c, Last_Name__c, Email__c, Phone__c, Status__c
+            SELECT Id,
+                First_Name__c,
+                Last_Name__c,
+                Email__c,
+                Phone__c,
+                Status__c,
+                Target_Use_Case__c,
+                Requested_Timeline__c
             FROM Customer_Inquiry__c
             WHERE Id = :response.inquiryId
             LIMIT 1
@@ -71,6 +80,8 @@ public class AirFilterAIConsoleControllerTest {
         System.assertEquals('console.test@example.com', createdInquiry.Email__c);
         System.assertEquals('4165550199', createdInquiry.Phone__c);
         System.assertEquals('Matched', createdInquiry.Status__c);
+        System.assertEquals('Commercial', createdInquiry.Target_Use_Case__c);
+        System.assertEquals('ASAP', createdInquiry.Requested_Timeline__c);
     }
 
     @IsTest
