@@ -121,6 +121,24 @@
                     <p><strong>Estimated Unit Price:</strong> {createdInquiry.estimatedUnitPrice}</p>
                     <p><strong>Estimated Total Price:</strong> {createdInquiry.estimatedTotalPrice}</p>
                     <p>{createdInquiry.message}</p>
+                    <div class="slds-m-top_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">Next Sales Action</h3>
+                        <lightning-button
+                            variant="brand"
+                            label="Create Sales Opportunity"
+                            onclick={handleConvertInquiry}
+                            disabled={isLoading}>
+                        </lightning-button>
+                    </div>
+                    <template if:true={conversionResult}>
+                        <div class="slds-box slds-theme_success slds-m-top_large">
+                            <h2 class="slds-text-heading_small slds-m-bottom_small">Sales Opportunity Created</h2>
+                            <p>{conversionResult.message}</p>
+                            <p><strong>Account Id:</strong> {conversionResult.accountId}</p>
+                            <p><strong>Contact Id:</strong> {conversionResult.contactId}</p>
+                            <p><strong>Opportunity Id:</strong> {conversionResult.opportunityId}</p>
+                        </div>
+                    </template>
                 </div>
             </template>
 

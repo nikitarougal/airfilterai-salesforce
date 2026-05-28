@@ -1,6 +1,7 @@
 import { LightningElement } from 'lwc';
 import findMatchingProduct from '@salesforce/apex/AirFilterAIConsoleController.findMatchingProduct';
 import createInquiry from '@salesforce/apex/AirFilterAIConsoleController.createInquiry';
+import convertInquiry from '@salesforce/apex/AirFilterAIConsoleController.convertInquiry';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class AirFilterSalesConsole extends LightningElement {
@@ -22,6 +23,8 @@ export default class AirFilterSalesConsole extends LightningElement {
 
     targetUseCase = 'Unknown';
     requestedTimeline = 'Unknown';
+
+    conversionResult;
 
     get mervOptions() {
         return [
@@ -188,5 +191,39 @@ export default class AirFilterSalesConsole extends LightningElement {
                 variant
             })
         );
+    }
+
+    async handleConvertInquiry() {
+        if (!this.createdInquiry || !this.createdInquiry.inquiryId) {
+            this.showToast(
+                'No inquiry selected',
+                'Create an inquiry before converting it.',
+                'warning'
+            );
+            return;
+        }
+
+        this.isLoading = true;
+        this.conversionResult = null;
+
+        try {
+            this.conversionResult = await convertInquiry({
+                inquiryId: this.createdInquiry.inquiryId
+            });
+
+            this.showToast(
+                'Opportunity created',
+                this.conversionResult.message,
+                'success'
+            );
+        } catch (error) {
+            this.showToast(
+                'Error converting inquiry',
+                this.getErrorMessage(error),
+                'error'
+            );
+        } finally {
+            this.isLoading = false;
+        }
     }
 }

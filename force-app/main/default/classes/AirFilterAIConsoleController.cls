@@ -35,6 +35,13 @@ public with sharing class AirFilterAIConsoleController {
         @AuraEnabled public String message { get; set; }
     }
 
+    public class ConversionResponse {
+        @AuraEnabled public Id accountId { get; set; }
+        @AuraEnabled public Id contactId { get; set; }
+        @AuraEnabled public Id opportunityId { get; set; }
+        @AuraEnabled public String message { get; set; }
+    }
+
     @AuraEnabled(cacheable=false)
     public static ProductMatchResponse findMatchingProduct(
         Decimal width,
@@ -131,6 +138,20 @@ public with sharing class AirFilterAIConsoleController {
         response.estimatedUnitPrice = updatedInquiry.Estimated_Unit_Price__c;
         response.estimatedTotalPrice = updatedInquiry.Estimated_Total_Price__c;
         response.message = 'Customer inquiry created and processed successfully.';
+
+        return response;
+    }
+
+    @AuraEnabled(cacheable=false)
+    public static ConversionResponse convertInquiry(Id inquiryId) {
+        InquiryConversionService.ConversionResult result =
+            InquiryConversionService.convertInquiry(inquiryId);
+
+        ConversionResponse response = new ConversionResponse();
+        response.accountId = result.accountId;
+        response.contactId = result.contactId;
+        response.opportunityId = result.opportunityId;
+        response.message = result.message;
 
         return response;
     }
