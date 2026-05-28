@@ -177,3 +177,18 @@ The qualification logic assigns a lead score based on quantity, company informat
 Based on the score, the system assigns a lead priority, recommends the next sales action, and flags whether follow-up is required.
 
 This feature demonstrates how Salesforce can support sales operations teams by reducing manual triage and standardizing follow-up behavior.
+
+
+## Lead Conversion and Opportunity Creation
+
+The project includes a custom conversion workflow that turns a qualified Customer Inquiry into standard Salesforce sales records.
+
+When a sales rep clicks Create Sales Opportunity, the system:
+
+- Finds or creates an Account
+- Finds or creates a Contact
+- Creates an Opportunity
+- Links all records back to the original Customer Inquiry
+- Updates the inquiry status to Converted
+
+This demonstrates a practical B2B CRM workflow connecting lead qualification with pipeline creation.
