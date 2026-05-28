@@ -93,6 +93,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Customer_Inquiry__c.Conversion_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Customer_Inquiry__c.Converted_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Customer_Inquiry__c.Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -143,6 +153,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Customer_Inquiry__c.Opportunity_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Customer_Inquiry__c.Opportunity_Stage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Customer_Inquiry__c.Phone__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -154,6 +174,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Customer_Inquiry__c.Recommended_Next_Step__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Customer_Inquiry__c.Related_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Customer_Inquiry__c.Related_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
